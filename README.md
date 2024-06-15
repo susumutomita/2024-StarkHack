@@ -60,7 +60,7 @@ TBD
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/blockchain-pulse.git
+   git clone https://github.com/susumutomita/2024-StarkHack.git
    cd blockchain-pulse
    ```
 
