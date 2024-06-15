@@ -1,8 +1,8 @@
-![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/susumutomita/2024-StartHack)
-![GitHub top language](https://img.shields.io/github/languages/top/susumutomita/2024-StartHack)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/susumutomita/2024-StartHack)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/susumutomita/2024-StartHack)
-![GitHub repo size](https://img.shields.io/github/repo-size/susumutomita/2024-StartHack)
+![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/susumutomita/2024-StarkHack)
+![GitHub top language](https://img.shields.io/github/languages/top/susumutomita/2024-StarkHack)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/susumutomita/2024-StarkHack)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/susumutomita/2024-StarkHack)
+![GitHub repo size](https://img.shields.io/github/repo-size/susumutomita/2024-StarkHack)
 
 # Blockchain Pulse
 
