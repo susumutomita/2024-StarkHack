@@ -8,7 +8,7 @@
 
 ETH Global Link: https://ethglobal.com/showcase/blockchain-pulse-rnnt1
 
-Blockchain Pulse is an interactive digital art installation that visualizes real-time blockchain transaction data on the Starknet network. Inspired by Tatsuo Miyajima's "Counter Void," this project transforms the dynamic activity of blockchain transactions into a continuously evolving piece of digital art.
+Blockchain Pulse is an interactive digital art installation that visualizes real-time blockchain transaction data on the Starknet network. Inspired by Tatsuo Miyajima's "Keep Changing, Connect with Everything, Continue Forever" this project transforms the dynamic activity of blockchain transactions into a continuously evolving piece of digital art.
 
 ## Table of Contents
 
