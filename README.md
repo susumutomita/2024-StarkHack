@@ -61,7 +61,7 @@ TBD
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/susumutomita/2024-StarkHack.git
-   cd blockchain-pulse
+   cd 2024-StarkHack
    ```
 
 2. **Install dependencies**:
