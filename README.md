@@ -90,7 +90,7 @@ TBD
 
 ## Contributing
 
-We welcome contributions to Blockchain Pulse! Please fork the repository and submit pull requests for review. For major changes, please open an issue first to discuss what you would like to change.
+We welcome contributions to Blockchain Pulse. Please fork the repository and submit pull requests for review. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 

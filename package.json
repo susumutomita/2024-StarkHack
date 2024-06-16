@@ -1,0 +1,30 @@
+{
+  "name": "2024-starkhack",
+  "version": "1.0.0",
+  "description": "![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/susumutomita/2024-StarkHack) ![GitHub top language](https://img.shields.io/github/languages/top/susumutomita/2024-StarkHack) ![GitHub pull requests](https://img.shields.io/github/issues-pr/susumutomita/2024-StarkHack) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/susumutomita/2024-StarkHack) ![GitHub repo size](https://img.shields.io/github/repo-size/susumutomita/2024-StarkHack)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx textlint '**/*.md'",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "Susumu Tomita <your.email@example.com> (http://yourwebsite.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "textlint": "^12.2.2",
+    "textlint-rule-ja-no-abusage": "^3.0.0",
+    "textlint-rule-ja-no-inappropriate-words": "^2.0.0",
+    "textlint-rule-no-double-negative-ja": "^2.0.1",
+    "textlint-rule-no-dropping-the-ra": "^3.0.0",
+    "textlint-rule-prefer-tari-tari": "^1.0.3",
+    "textlint-rule-preset-ja-spacing": "^2.2.0",
+    "textlint-rule-preset-ja-technical-writing": "^7.0.0",
+    "textlint-rule-spellcheck-tech-word": "^5.0.0"
+  }
+}
