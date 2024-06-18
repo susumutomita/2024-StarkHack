@@ -2,6 +2,10 @@
 install:
 	npm install
 
+.PHONY: install_all
+install_all:
+	npm run install-all
+
 .PHONY: setup_husky
 setup_husky:
 	npm run prepare

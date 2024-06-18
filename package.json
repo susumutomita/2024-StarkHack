@@ -3,11 +3,17 @@
   "version": "1.0.0",
   "description": "![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/susumutomita/2024-StarkHack) ![GitHub top language](https://img.shields.io/github/languages/top/susumutomita/2024-StarkHack) ![GitHub pull requests](https://img.shields.io/github/issues-pr/susumutomita/2024-StarkHack) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/susumutomita/2024-StarkHack) ![GitHub repo size](https://img.shields.io/github/repo-size/susumutomita/2024-StarkHack)",
   "main": "index.js",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx textlint '**/*.md'",
     "lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start": "concurrently \"npm start --prefix frontend\" \"npm start --prefix backend\"",
+    "install-all": "npm install && npm install --prefix frontend && npm install --prefix backend"
   },
   "keywords": [],
   "author": "Susumu Tomita <your.email@example.com> (http://yourwebsite.com/)",
@@ -16,6 +22,7 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "concurrently": "^6.0.0",
     "husky": "^8.0.3",
     "textlint": "^12.2.2",
     "textlint-rule-ja-no-abusage": "^3.0.0",
