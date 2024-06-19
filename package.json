@@ -22,7 +22,7 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "concurrently": "^6.0.0",
+    "concurrently": "^8.2.2",
     "husky": "^8.0.3",
     "textlint": "^12.2.2",
     "textlint-rule-ja-no-abusage": "^3.0.0",
