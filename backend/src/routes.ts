@@ -1,7 +1,10 @@
 import { Router } from 'express';
-import { getTransactionData, getContractBytecode, bytecodeToOpcodes } from './utils';
+import { OpcodeService } from './services/OpcodeService';
 
 const router = Router();
+const apiBaseURL = 'https://sepolia-api.voyager.online/beta';  // ここでAPIのベースURLを指定
+
+const opcodeService = new OpcodeService(apiBaseURL);
 
 router.get('/get_opcodes', async (req, res) => {
   const txHash = req.query.tx_hash as string;
@@ -10,13 +13,11 @@ router.get('/get_opcodes', async (req, res) => {
   }
 
   try {
-    const txData = await getTransactionData(txHash);
-    const contractAddress = txData.to;
-    const bytecode = await getContractBytecode(contractAddress);
-    const opcodes = bytecodeToOpcodes(bytecode);
+    const opcodes = await opcodeService.getOpcodes(txHash);
     return res.json({ opcodes });
   } catch (error) {
-    const err = error as Error;
+    const err = error as any;
+    console.error('Error fetching opcodes:', err);
     return res.status(500).json({ error: err.message });
   }
 });
