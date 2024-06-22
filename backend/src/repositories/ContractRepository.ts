@@ -8,9 +8,9 @@ export class ContractRepository {
     this.httpClient = new HttpClient(baseURL);
   }
 
-  public async getContractBytecode(contractAddress: string): Promise<string> {
+  public async getContractBytecode(contractAddress: string): Promise<string | undefined> {
     const url = `/contracts/${contractAddress}`;
     const data: ContractData = await this.httpClient.get(url);
-    return data.bytecode;
+    return data.bytecode ?? undefined;
   }
 }

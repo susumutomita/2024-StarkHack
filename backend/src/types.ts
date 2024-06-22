@@ -1,10 +1,9 @@
 export interface TransactionData {
-  hash: string; // トランザクションのハッシュ
+  hash: string;
   to: string;
-  // 他の必要なフィールドをここに追加します
+  contractAddress: string;
 }
 
 export interface ContractData {
   bytecode: string;
-  // 他の必要なフィールドをここに追加します
 }
