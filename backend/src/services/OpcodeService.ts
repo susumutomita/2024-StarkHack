@@ -39,7 +39,7 @@ export class OpcodeService {
       }
       const bytecode = await this.contractRepository.getContractBytecode(contractAddress);
       if (!bytecode) {
-        console.warn('Bytecode is undefined, skipping opcode conversion');
+        console.warn(`Bytecode is undefined for contract ${contractAddress}, skipping opcode conversion`);
         return ['UNKNOWN']; // バイトコードがない場合は 'UNKNOWN' を返す
       }
       console.log(`Contract bytecode: ${bytecode}`);
@@ -67,5 +67,10 @@ export class OpcodeService {
       console.error(`Error in getLatestTransactionOpcodes: ${err.message}`);
       throw err;
     }
+  }
+
+  // getTransactionDataメソッドを追加
+  public async getTransactionData(txHash: string): Promise<TransactionData> {
+    return this.transactionRepository.getTransactionData(txHash);
   }
 }

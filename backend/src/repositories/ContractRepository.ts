@@ -12,6 +12,9 @@ export class ContractRepository {
     const url = `/contracts/${contractAddress}`;
     const data: ContractData = await this.httpClient.get(url);
     console.log(`Contract data for address ${contractAddress}: ${JSON.stringify(data)}`);
+    if (!data.bytecode) {
+      console.warn(`Bytecode for contract ${contractAddress} is undefined`);
+    }
     return data.bytecode ?? undefined;
   }
 }

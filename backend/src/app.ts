@@ -23,19 +23,20 @@ const io = new Server(httpServer, {
   }
 });
 
-let lastSeenTransactionHash = '';
+let lastSeenTransactionTimestamp = 0;
 
 async function pollTransactions() {
   try {
-    const latestOpcodes = await opcodeService.getLatestTransactionOpcodes();
-    for (const { txHash, opcodes } of latestOpcodes) {
-      if (txHash !== lastSeenTransactionHash) {
-        io.emit('new_opcode', { txHash, opcodes });
-        lastSeenTransactionHash = txHash;
+    const latestTransactions = await opcodeService.getLatestTransactionOpcodes();
+    for (const { txHash, opcodes } of latestTransactions) {
+      const txData = await opcodeService.getTransactionData(txHash);
+      if (txData.timestamp > lastSeenTransactionTimestamp) {
+        io.emit('new_transaction', { txData });
+        lastSeenTransactionTimestamp = txData.timestamp;
       }
     }
   } catch (error) {
-    console.error('Failed to fetch latest opcodes', error);
+    console.error('Failed to fetch latest transactions', error);
   }
 }
 
@@ -50,8 +51,8 @@ io.on('connection', (socket: any) => {
   });
 });
 
-// 5秒ごとにトランザクションをポーリング
-setInterval(pollTransactions, 5000);
+// 3秒ごとにトランザクションをポーリング
+setInterval(pollTransactions, 3000);
 
 httpServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
