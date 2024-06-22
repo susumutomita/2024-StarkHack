@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+import ArtDisplay from './components/ArtDisplay';
 
-function App() {
+const socket = io('http://localhost:3000');  // サーバー側のポートに接続
+
+interface TransactionData {
+  hash: string;
+  senderAddress: string;
+  contractAddress: string;
+  timestamp: number;
+}
+
+const App: React.FC = () => {
+  const [transactions, setTransactions] = useState<TransactionData[]>([]);
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    socket.on('new_transaction', (data: { txData: TransactionData }) => {
+      console.log('New transaction received:', data);
+      setTransactions((prev) => [...prev, data.txData]);
+    });
+
+    socket.on('error', (error: any) => {
+      console.error('Error:', error);
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Disconnected from server');
+    });
+
+    return () => {
+      socket.off('connect');
+      socket.off('new_transaction');
+      socket.off('error');
+      socket.off('disconnect');
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Blockchain Art</h1>
+      <div className="art-container">
+        {transactions.map((tx) => (
+          <ArtDisplay key={tx.hash} txData={tx} />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
