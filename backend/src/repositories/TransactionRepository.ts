@@ -12,4 +12,9 @@ export class TransactionRepository {
     const url = `/txns/${txHash}`;
     return this.httpClient.get(url);
   }
+
+  public async getLatestTransactions(): Promise<TransactionData[]> {
+    const url = `/txns?ps=10&p=1`; // 最新のトランザクションを取得するURLに変更
+    return this.httpClient.get(url);
+  }
 }

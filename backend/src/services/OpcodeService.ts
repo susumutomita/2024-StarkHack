@@ -1,5 +1,6 @@
 import { TransactionRepository } from '../repositories/TransactionRepository';
 import { ContractRepository } from '../repositories/ContractRepository';
+import { TransactionData } from '../types'; // 型定義をインポート
 
 const OPCODE_MAPPING: { [key: string]: string } = {
   '00': 'STOP', '01': 'ADD', '02': 'MUL', '03': 'SUB', '04': 'DIV',
@@ -31,5 +32,15 @@ export class OpcodeService {
     const contractAddress = txData.to;
     const bytecode = await this.contractRepository.getContractBytecode(contractAddress);
     return this.bytecodeToOpcodes(bytecode);
+  }
+
+  public async getLatestTransactionOpcodes(): Promise<{ txHash: string, opcodes: string[] }[]> {
+    const transactions = await this.transactionRepository.getLatestTransactions();
+    const result = [];
+    for (const tx of transactions) {
+      const opcodes = await this.getOpcodes(tx.hash);
+      result.push({ txHash: tx.hash, opcodes });
+    }
+    return result;
   }
 }
