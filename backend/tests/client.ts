@@ -19,44 +19,18 @@ socket.on('disconnect', () => {
   console.log('Disconnected from server');
 });
 
-function generateArt(txData) {
-  const { hash, senderAddress, contractAddress, timestamp } = txData;
+function generateArt(txData: any) {
+  const { hash, from, to, value, timestamp } = txData;
   // トランザクションデータを使用してアートを生成
   console.log(`Generating art for transaction ${hash}`);
-
+  // ここでアート生成ロジックを追加
   // 例: ハッシュを使用して色を生成
   const color = `#${hash.slice(-6)}`;
   console.log(`Color: ${color}`);
-
   // 例: タイムスタンプを使用してアニメーション速度を設定
   const speed = timestamp % 100;
   console.log(`Speed: ${speed}`);
-
   // 例: 送信者アドレスを使用して形状を生成
-  const shape = senderAddress ? (parseInt(senderAddress.slice(-3), 16) % 2 === 0 ? 'circle' : 'square') : 'unknown';
+  const shape = from.slice(-3) % 2 === 0 ? 'circle' : 'square';
   console.log(`Shape: ${shape}`);
-
-  // クライアントサイドで視覚的に表示する
-  displayArt(color, speed, shape);
-}
-
-function displayArt(color: any, speed: any, shape: any) {
-  // アート表示のロジックをここに追加
-  const artElement = document.createElement('div');
-  artElement.style.width = '100px';
-  artElement.style.height = '100px';
-  artElement.style.backgroundColor = color;
-  artElement.style.borderRadius = shape === 'circle' ? '50%' : '0';
-  artElement.style.transition = `all ${speed}s`;
-
-  document.body.appendChild(artElement);
-
-  // 簡単なアニメーションを追加
-  setTimeout(() => {
-    artElement.style.transform = 'scale(1.5)';
-  }, 1000);
-
-  setTimeout(() => {
-    artElement.style.transform = 'scale(1)';
-  }, 2000);
 }
