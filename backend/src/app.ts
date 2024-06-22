@@ -23,23 +23,35 @@ const io = new Server(httpServer, {
   }
 });
 
+let lastSeenTransactionHash = '';
+
+async function pollTransactions() {
+  try {
+    const latestOpcodes = await opcodeService.getLatestTransactionOpcodes();
+    for (const { txHash, opcodes } of latestOpcodes) {
+      if (txHash !== lastSeenTransactionHash) {
+        io.emit('new_opcode', { txHash, opcodes });
+        lastSeenTransactionHash = txHash;
+      }
+    }
+  } catch (error) {
+    console.error('Failed to fetch latest opcodes', error);
+  }
+}
+
 io.on('connection', (socket: any) => {
   console.log('a user connected');
 
-  // クライアントからリアルタイムトランザクションを取得するリクエストを受け取る
-  socket.on('fetch_latest_opcodes', async () => {
-    try {
-      const latestOpcodes = await opcodeService.getLatestTransactionOpcodes();
-      socket.emit('latest_opcodes', latestOpcodes);
-    } catch (error) {
-      socket.emit('error', { message: 'Failed to fetch latest opcodes' });
-    }
-  });
+  // クライアントが接続したときの初期データ送信
+  socket.emit('connected', { message: 'You are connected to the server' });
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
 });
+
+// 5秒ごとにトランザクションをポーリング
+setInterval(pollTransactions, 5000);
 
 httpServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

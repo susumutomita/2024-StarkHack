@@ -4,13 +4,10 @@ const socket = io('http://localhost:3000');
 
 socket.on('connect', () => {
   console.log('Connected to server');
-
-  // リアルタイムトランザクションのオペコードを取得するリクエストを送信
-  socket.emit('fetch_latest_opcodes');
 });
 
-socket.on('latest_opcodes', (data) => {
-  console.log('Latest opcodes:', data);
+socket.on('new_opcode', (data) => {
+  console.log('New opcode received:', data);
   // ここでアート生成の処理を追加
 });
 
