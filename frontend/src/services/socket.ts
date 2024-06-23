@@ -1,11 +1,13 @@
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
 const SOCKET_URL = 'http://localhost:3000'; // Socket.ioサーバーのURL
 
 class SocketService {
-  private socket = io(SOCKET_URL);
+  private socket: Socket;
 
   constructor() {
+    this.socket = io(SOCKET_URL);
+
     this.socket.on('connect', () => {
       console.log('Connected to server');
     });

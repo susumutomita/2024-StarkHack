@@ -22,7 +22,8 @@ export class HttpClient {
     try {
       console.log(`Sending GET request to: ${url}`);
       const response = await this.client.get(url);
-      console.log(`Response received: `, response.data);
+      console.log("Response received");
+      // console.log(`Response received: `, response.data);
       return response.data;
     } catch (error) {
       const err = error as any;

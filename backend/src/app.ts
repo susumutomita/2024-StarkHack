@@ -25,15 +25,22 @@ const io = new Server(httpServer, {
 
 let lastSeenTransactionTimestamp = 0;
 
+// トランザクションをポーリングする関数
 async function pollTransactions() {
+  console.log('Polling transactions...');
   try {
     const latestTransactions = await opcodeService.getLatestTransactionOpcodes();
     for (const { txHash, opcodes } of latestTransactions) {
       const txData = await opcodeService.getTransactionData(txHash);
-      if (txData.timestamp > lastSeenTransactionTimestamp) {
-        io.emit('new_transaction', { txData });
-        lastSeenTransactionTimestamp = txData.timestamp;
-      }
+      console.log(`Fetched txData: ${JSON.stringify(txData)}`);
+      console.log(`Current txData.timestamp: ${txData.timestamp}, lastSeenTransactionTimestamp: ${lastSeenTransactionTimestamp}`);
+
+      // タイムスタンプが新しいトランザクションのみを送信
+      // if (txData.timestamp > lastSeenTransactionTimestamp) {
+      console.log('Emitting new_transaction event with data:', txData);
+      io.emit('new_transaction', { txData });
+      lastSeenTransactionTimestamp = txData.timestamp;
+      // }
     }
   } catch (error) {
     console.error('Failed to fetch latest transactions', error);
@@ -41,13 +48,13 @@ async function pollTransactions() {
 }
 
 io.on('connection', (socket: any) => {
-  console.log('a user connected');
+  console.log('A user connected');
 
   // クライアントが接続したときの初期データ送信
   socket.emit('connected', { message: 'You are connected to the server' });
 
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+    console.log('User disconnected');
   });
 });
 

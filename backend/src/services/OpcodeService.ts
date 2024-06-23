@@ -32,7 +32,7 @@ export class OpcodeService {
     try {
       console.log(`Fetching opcodes for transaction: ${txHash}`);
       const txData = await this.transactionRepository.getTransactionData(txHash);
-      console.log(`Transaction data: ${JSON.stringify(txData)}`);
+      // console.log(`Transaction data: ${JSON.stringify(txData)}`);
       const contractAddress = txData.contractAddress;
       if (!contractAddress) {
         throw new Error('Contract address is undefined');
@@ -55,7 +55,7 @@ export class OpcodeService {
     try {
       console.log('Fetching latest transactions');
       const transactions = await this.transactionRepository.getLatestTransactions();
-      console.log(`Transactions: ${JSON.stringify(transactions)}`);
+      // console.log(`Transactions: ${JSON.stringify(transactions)}`);
       const result = [];
       for (const tx of transactions) {
         const opcodes = await this.getOpcodes(tx.hash);

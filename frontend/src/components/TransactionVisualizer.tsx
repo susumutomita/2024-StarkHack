@@ -11,9 +11,9 @@ const TransactionVisualizer: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
-    socketService.on('new_opcode', (data: Transaction) => {
-      console.log('New transaction received:', data); // 追加: 受信データのログ
-      setTransactions(prevTransactions => [data, ...prevTransactions]);
+    socketService.on('new_transaction', (data: { txData: Transaction }) => {
+      console.log('New transaction received:', data.txData);
+      setTransactions(prevTransactions => [data.txData, ...prevTransactions]);
     });
   }, []);
 
