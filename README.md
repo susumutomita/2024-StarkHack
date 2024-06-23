@@ -23,6 +23,8 @@ Blockchain Pulse is an interactive digital art installation that visualizes real
   - [Technologies Used](#technologies-used)
   - [Images](#images)
   - [System Overview](#system-overview)
+  - [Screenshots](#screenshots)
+  - [Installation](#installation)
   - [Usage](#usage)
   - [Future Prospects](#future-prospects)
   - [Contributing](#contributing)
@@ -39,7 +41,7 @@ Blockchain Pulse visualizes live transaction data from Starknet, converting each
 
 ## Technologies Used
 
-- **Voyager API**: Fetch transaction data from Staknet.
+- **Voyager API**: Fetch transaction data from Starknet.
 - **React**: Front-end library for building user interfaces.
 - **Socket.IO**: Real-time communication library.
 
@@ -49,20 +51,10 @@ Blockchain Pulse visualizes live transaction data from Starknet, converting each
 
 Blockchain Pulse consists of a front-end built with React and a back-end powered by Express. The system leverages the Voyager API to fetch transaction data from Starknet. The front-end and back-end communicate via WebSockets to ensure real-time updates of the transaction data on the screen.
 
-```mermaid
-graph TD
-  A[User] --> B[Front-end (React)]
-  B -->|WebSocket| C[Back-end (Express)]
-  C -->|Fetches Data| D[Voyager API]
-  D --> C
-  C -->|Pushes Data| B
-  B --> A
-
-
 ## Screenshots
 
 <div style="text-align: center;">
-  <img src="./images/art.png" width="200" height="200" alt="Blockchain Pulse Logo"/>
+  <img src="./images/art.png" width="200" height="200" alt="Blockchain Pulse Screenshot"/>
 </div>
 
 ## Installation
@@ -86,7 +78,7 @@ graph TD
    NODE_ENV=<development | production>
    ```
 
-   Depending on the value of `NODE_ENV`, the connection destination will switch between `'https://api.voyager.online/beta'` and `'https://sepolia-api.voyager.online/beta'`.
+   Depending on the value of `NODE_ENV`, the connection destination will switch between the Mainnet (`https://api.voyager.online/beta`) and Sepolia testnet (`https://sepolia-api.voyager.online/beta`).
 
 4. **Run the server**:
    ```bash
@@ -112,4 +104,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## The Knocks Team
 
-- [Susumu Tomita](https://www.linkedin.com/in/susumutomita/) - Full Stack Developer
+- [Susumu Tomita](https://susumutomita.netlify.app/) - Full Stack Developer
