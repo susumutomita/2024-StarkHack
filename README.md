@@ -38,17 +38,10 @@ Blockchain Pulse visualizes live transaction data from Starknet, converting each
 ## Features
 
 - **Real-time Data Visualization**: Displays live transaction data as visual patterns.
-- **Interactive Interface**: Allows users to interact with and influence the visualizations.
-- **Dynamic Color and Shape Generation**: Generates unique visual representations for each transaction.
-- **Privacy and Security**: Implements Zero-knowledge Proofs to maintain data privacy.
 
 ## Technologies Used
 
-- **Starknet**: Layer 2 scaling solution for Ethereum.
-- **Cairo**: Programming language for writing Starknet contracts.
-- **Herodotus Storage Proof API**: API for accessing Ethereum data.
-- **D3.js**: Library for creating data visualizations.
-- **Three.js**: Library for 3D graphics.
+- **Voyager API**: 
 
 ## Images
 

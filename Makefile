@@ -18,10 +18,6 @@ build:
 clean:
 	npm run clean
 
-.PHONY: deploy_circuit
-deploy_circuit:
-	npm run deploy:circuit
-
 .PHONY: test
 test:
 	npm run test
@@ -56,3 +52,15 @@ format_check:
 
 .PHONY: before_commit
 before_commit: test format lint
+
+.PHONY: start_frontend
+start_frontend:
+	cd frontend && npm start
+
+.PHONY: start_backend
+start_backend:
+	cd backend && npm start
+
+.PHONY: start
+start:
+	npx concurrently "make start_backend" "make start_frontend"
