@@ -6,13 +6,13 @@
 
 # Blockchain Pulse
 
-ETH Global Link: https://ethglobal.com/showcase/blockchain-pulse-rnnt1
+ETH Global Link: [Blockchain Pulse Showcase](https://ethglobal.com/showcase/blockchain-pulse-rnnt1)
 
-<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center">
-  <img src="./images/Logo.png" width="200" height="200" />
+<div style="text-align: center;">
+  <img src="./images/Logo.png" width="200" height="200" alt="Blockchain Pulse Logo"/>
 </div>
 
-Blockchain Pulse is an interactive digital art installation that visualizes real-time blockchain transaction data on the Starknet network. Inspired by Tatsuo Miyajima's "Keep Changing, Connect with Everything, Continue Forever" this project transforms the dynamic activity of blockchain transactions into a continuously evolving piece of digital art.
+Blockchain Pulse is an interactive digital art installation that visualizes real-time blockchain transaction data on the Starknet network. Inspired by Tatsuo Miyajima's "Keep Changing, Connect with Everything, Continue Forever," this project transforms the dynamic activity of blockchain transactions into a continuously evolving piece of digital art.
 
 ## Table of Contents
 
@@ -23,13 +23,11 @@ Blockchain Pulse is an interactive digital art installation that visualizes real
   - [Technologies Used](#technologies-used)
   - [Images](#images)
   - [System Overview](#system-overview)
-  - [Screenshots](#screenshots)
-  - [Installation](#installation)
   - [Usage](#usage)
   - [Future Prospects](#future-prospects)
   - [Contributing](#contributing)
   - [License](#license)
-  - [The knocks team](#the-knocks-team)
+  - [The Knocks Team](#the-knocks-team)
 
 ## Introduction
 
@@ -41,17 +39,31 @@ Blockchain Pulse visualizes live transaction data from Starknet, converting each
 
 ## Technologies Used
 
-- **Voyager API**: 
+- **Voyager API**: Fetch transaction data from Staknet.
+- **React**: Front-end library for building user interfaces.
+- **Socket.IO**: Real-time communication library.
 
 ## Images
 
 ## System Overview
 
-TBD
+Blockchain Pulse consists of a front-end built with React and a back-end powered by Express. The system leverages the Voyager API to fetch transaction data from Starknet. The front-end and back-end communicate via WebSockets to ensure real-time updates of the transaction data on the screen.
+
+```mermaid
+graph TD
+  A[User] --> B[Front-end (React)]
+  B -->|WebSocket| C[Back-end (Express)]
+  C -->|Fetches Data| D[Voyager API]
+  D --> C
+  C -->|Pushes Data| B
+  B --> A
+
 
 ## Screenshots
 
-TBD
+<div style="text-align: center;">
+  <img src="./images/art.png" width="200" height="200" alt="Blockchain Pulse Logo"/>
+</div>
 
 ## Installation
 
@@ -62,18 +74,23 @@ TBD
    ```
 
 2. **Install dependencies**:
-
    ```bash
-   npm install
+   make install_all
    ```
 
 3. **Set up environment variables**:
-   Create a `.env` file and add your API keys and necessary configurations.
+   Create a `.env` file in the `backend/` directory and add your API keys and necessary configurations.
 
-4. **Run the development server**:
+   ```plaintext
+   VOYAGER_API_KEY=<Specify your Voyager API key>
+   NODE_ENV=<development | production>
+   ```
 
+   Depending on the value of `NODE_ENV`, the connection destination will switch between `'https://api.voyager.online/beta'` and `'https://sepolia-api.voyager.online/beta'`.
+
+4. **Run the server**:
    ```bash
-   npm start
+   make start
    ```
 
 ## Usage
@@ -83,7 +100,7 @@ TBD
 
 ## Future Prospects
 
-TBD
+- **NFT Generation**: Plan to implement NFT generation from snapshots of the visualizations.
 
 ## Contributing
 
@@ -93,6 +110,6 @@ We welcome contributions to Blockchain Pulse. Please fork the repository and sub
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## The knocks team
+## The Knocks Team
 
 - [Susumu Tomita](https://www.linkedin.com/in/susumutomita/) - Full Stack Developer
