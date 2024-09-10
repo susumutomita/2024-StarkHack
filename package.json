@@ -19,7 +19,7 @@
   "author": "Susumu Tomita <your.email@example.com> (http://yourwebsite.com/)",
   "license": "MIT",
   "dependencies": {
-    "typescript": "^5.4.5"
+    "typescript": "^5.6.2"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
